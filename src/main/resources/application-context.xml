@@ -13,66 +13,55 @@
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 
     <mvc:annotation-driven />
-        <mvc:resources mapping="/resources/**" location="/resources/" />
-        <context:component-scan base-package="builder"/>
-        <aop:aspectj-autoproxy/>
+    <mvc:resources mapping="/resources/**" location="/resources/" />
+    <context:component-scan base-package="builder"/>
+    <aop:aspectj-autoproxy/>
 
 
-        <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-            <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
-            <property name="prefix" value="/WEB-INF/jsps/" />
-            <property name="suffix" value=".jsp" />
-        </bean>
-<!--
-        <tx:annotation-driven transaction-manager="transactionManager" />
-        <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-            <property name="entityManagerFactory" ref="entityManagerFactory" />
-        </bean>
+    <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+        p:viewClass="org.springframework.web.servlet.view.JstlView"
+        p:prefix="/WEB-INF/jsps/"
+        p:suffix=".jsp"
+    />
 
-        <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-            <property name="locations">
-                <list>
-                    <value>classpath:environment.properties</value>
-                </list>
-            </property>
-        </bean>
+    <tx:annotation-driven transaction-manager="transactionManager" />
 
-        <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-            <property name="url" value="${database.url}"/>
-            <property name="username" value="${database.username}"/>
-            <property name="password" value="${database.password}"/>
-            <property name="driverClassName" value="${database.driver}" />
-        </bean>
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+        p:entityManagerFactory-ref="entityManagerFactory"
+    />
 
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+        p:location="classpath:environment.properties"
+    />
 
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+        p:url="${database.url}"
+        p:username="${database.username}"
+        p:password="${database.password}"
+        p:driverClassName="${database.driver}"
+    />
 
-        <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-            <property name="dataSource" ref="dataSource"/>
-            <property name="persistenceUnitName" value="beezzy-persistence"/>
-            <property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
-            <property name="jpaVendorAdapter">
-                <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
-            </property>
-            <property name="jpaProperties">
-                <props>
-                    <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
-                    <prop key="hibernate.hbm2ddl.auto">update</prop>
-                </props>
-            </property>
-        </bean>
+    <bean id="jpaVendor" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
 
-        <bean id="dropboxClientConfig" class="com.dropbox.core.DbxRequestConfig">
-            <constructor-arg value="beezzy" />
-            <constructor-arg value="en_En" />
-        </bean>
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+        p:dataSource-ref="dataSource"
+        p:persistenceUnitName="builder-persistence"
+        p:persistenceXmlLocation="classpath:META-INF/persistence.xml"
+        p:jpaVendorAdapter-ref="jpaVendor"
+    />
 
-        <bean id="dropboxClient" class="com.dropbox.core.DbxClient">
-            <constructor-arg ref="dropboxClientConfig" />
-            <constructor-arg value="${dropbox.access_token}" />
-        </bean>
+    <bean id="dropboxClientConfig" class="com.dropbox.core.DbxRequestConfig">
+        <constructor-arg value="${dropbox.identifier}" />
+        <constructor-arg value="${dropbox.locale}" />
+    </bean>
 
-        <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-            <property name="maxUploadSize" value="50000000"/>
-        </bean>
-    -->
+    <bean id="dropboxClient" class="com.dropbox.core.DbxClient">
+        <constructor-arg ref="dropboxClientConfig" />
+        <constructor-arg value="${dropbox.access_token}" />
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="50000000"/>
+    </bean>
+
 </beans>
