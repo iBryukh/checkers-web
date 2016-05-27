@@ -24,14 +24,33 @@
         p:suffix=".jsp"
     />
 
-    <tx:annotation-driven transaction-manager="transactionManager" />
-
-    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
-        p:entityManagerFactory-ref="entityManagerFactory"
+    <!-- START configure messages with locale -->
+    <bean id="messageSource"
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
+        p:defaultEncoding="UTF-8"
+        p:basename="classpath:messages"
     />
+
+    <bean id="localeResolver"
+          class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="defaultLocale" value="en"/>
+        <property name="cookieName" value="builder_cookie"/>
+        <property name="cookieMaxAge" value="3600"/>
+    </bean>
+    <!-- END -->
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
         p:location="classpath:environment.properties"
+    />
+
+
+
+
+    <!-- START configure DB, transactions -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+          p:entityManagerFactory-ref="entityManagerFactory"
     />
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
@@ -49,7 +68,12 @@
         p:persistenceXmlLocation="classpath:META-INF/persistence.xml"
         p:jpaVendorAdapter-ref="jpaVendor"
     />
+    <!-- END -->
 
+
+
+
+    <!-- START configure DropBox client -->
     <bean id="dropboxClientConfig" class="com.dropbox.core.DbxRequestConfig">
         <constructor-arg value="${dropbox.identifier}" />
         <constructor-arg value="${dropbox.locale}" />
@@ -59,6 +83,10 @@
         <constructor-arg ref="dropboxClientConfig" />
         <constructor-arg value="${dropbox.access_token}" />
     </bean>
+    <!-- END -->
+
+
+
 
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="50000000"/>
