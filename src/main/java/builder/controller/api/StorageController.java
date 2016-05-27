@@ -1,9 +1,11 @@
 package builder.controller.api;
 
 import builder.domain.response.Response;
+import builder.exceptions.BadRequestException;
 import builder.exceptions.ServiceException;
 import builder.exceptions.bad_request.BadFileExtension;
 import builder.services.IStorageService;
+import builder.services.storage.Project;
 import builder.utils.ResponseBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,6 +57,13 @@ public class StorageController {
         } catch (IOException e) {
             throw new ServiceException(e.getMessage());
         }
+    }
+
+    @RequestMapping(value = "/{project}/versions", method = RequestMethod.GET)
+    public @ResponseBody Response<Project> getVersions(
+            @PathVariable("project") String project
+    ) throws ServiceException, BadRequestException {
+        return builder.get(storageService.listFiles(project));
     }
 
 }

@@ -1,11 +1,11 @@
-package builder.services.impl;
+package builder.services.storage;
 
+import builder.exceptions.BadRequestException;
 import builder.exceptions.ServiceException;
 import builder.exceptions.bad_request.BadFileExtension;
+import builder.exceptions.bad_request.BadProjectName;
 import builder.services.IStorageService;
-import com.dropbox.core.DbxClient;
-import com.dropbox.core.DbxException;
-import com.dropbox.core.DbxWriteMode;
+import com.dropbox.core.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,6 +14,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 /**
  * Created by oleh_kurpiak on 26.05.16.
@@ -38,12 +39,51 @@ public class StorageServiceImpl implements IStorageService {
 
     /**
      *
+     * @param projectName - the name of project
+     * @return list of project version and it's files
+     * @throws ServiceException - if some exception where throwed from storage in storage
+     * @throws BadRequestException - if project with passed name does not exist
+     */
+    @Override
+    public Project listFiles(String projectName) throws ServiceException, BadRequestException {
+        Project project = new Project();
+        try {
+            DbxEntry.WithChildren root = dbxClient.getMetadataWithChildren('/'+ projectName);
+            if(root == null)
+                throw new BadProjectName(projectName);
+
+            List<DbxEntry> versions = root.children;
+
+            if(versions != null){
+                for(DbxEntry version : versions){
+                    if(version.isFolder()) {
+                        VersionFolder folder = new VersionFolder(version.name);
+
+                        // get children files for current version folder
+                        DbxEntry.WithChildren versionFolder = dbxClient.getMetadataWithChildren(version.path);
+                        List<DbxEntry> files = versionFolder.children;
+
+                        if(files != null)
+                            for(DbxEntry file : files)
+                                folder.addFile(new StorageFile(file.name));
+
+                        project.addVersion(folder);
+                    }
+                }
+            }
+        } catch (DbxException e) {
+            throw new ServiceException(e.getMessage());
+        }
+        return project;
+    }
+
+    /**
+     *
      * @param file - file to be saved
      * @param id - identifier of file
      * @param prefix - folder
      * @return success
-     * @throws IOException
-     * @throws DbxException
+     * @throws ServiceException - method throws it if something happens with storage
      */
     private boolean uploadFile(MultipartFile file, String prefix, String id) throws ServiceException {
         InputStream inputStream = null;
@@ -83,8 +123,7 @@ public class StorageServiceImpl implements IStorageService {
      * @param outputStream - stream for file
      * @param id - identifier of file
      * @param prefix - folder
-     * @throws IOException
-     * @throws DbxException
+     * @throws ServiceException method throw it if something happens with storage
      */
     private void downloadFile(OutputStream outputStream, String prefix, String id) throws ServiceException {
         try {
