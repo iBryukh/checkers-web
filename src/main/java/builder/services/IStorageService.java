@@ -1,9 +1,9 @@
 package builder.services;
 
-import com.dropbox.core.DbxException;
+import builder.exceptions.ServiceException;
+import builder.exceptions.bad_request.BadFileExtension;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.io.OutputStream;
 
 /**
@@ -11,7 +11,7 @@ import java.io.OutputStream;
  */
 public interface IStorageService {
 
-    boolean uploadFile(MultipartFile file, String project, String fileName, String version) throws IOException, DbxException;
+    boolean uploadFile(MultipartFile file, String project, String fileName, String version) throws ServiceException, BadFileExtension;
 
-    void downloadFile(OutputStream outputStream, String project, String fileName, String version) throws IOException, DbxException;
+    void downloadFile(OutputStream outputStream, String project, String fileName, String version) throws ServiceException;
 }

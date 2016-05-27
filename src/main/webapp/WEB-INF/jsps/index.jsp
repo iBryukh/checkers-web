@@ -11,8 +11,11 @@
     <title>Title</title>
 </head>
 <body>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="file">
+    <form action="/api/storage/" method="post" enctype="multipart/form-data">
+        File: <input type="file" name="file"><br />
+        Project: <input type="text" name="project"><br />
+        Version <input type="text" name="version"><br />
+        File name: <input type="text" name="file_name"> <br />
         <input type="submit">
     </form>
 </body>
