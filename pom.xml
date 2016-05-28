@@ -18,9 +18,6 @@
     <profiles>
         <profile>
             <id>local</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <properties>
                 <database.url>jdbc:mysql://localhost:3306</database.url>
                 <database.user>root</database.user>
@@ -29,12 +26,15 @@
             </properties>
         </profile>
         <profile>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <id>production</id>
             <properties>
-                <database.url>skip here</database.url>
-                <database.user>skip here</database.user>
-                <database.pass>skip here</database.pass>
-                <database.schema>skip here</database.schema>
+                <database.url>jdbc:mysql://eu-cdbr-azure-north-e.cloudapp.net:3306</database.url>
+                <database.user>b3cf674f74679e</database.user>
+                <database.pass>9d506093</database.pass>
+                <database.schema>acsm_2b79d351fd18cf8</database.schema>
             </properties>
         </profile>
     </profiles>

@@ -47,7 +47,6 @@
 
 
     <!-- START configure DB, transactions -->
-    <!--
     <tx:annotation-driven transaction-manager="transactionManager" />
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
@@ -69,7 +68,6 @@
         p:persistenceXmlLocation="classpath:META-INF/persistence.xml"
         p:jpaVendorAdapter-ref="jpaVendor"
     />
-    -->
     <!-- END -->
 
 
