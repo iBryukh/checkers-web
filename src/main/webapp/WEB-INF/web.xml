@@ -26,4 +26,13 @@
 			classpath:application-context.xml
 		</param-value>
 	</context-param>
+
+	<filter>
+		<filter-name>CORS</filter-name>
+		<filter-class>builder.rest.config.ConfigCORS</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CORS</filter-name>
+		<url-pattern>/api/*</url-pattern>
+	</filter-mapping>
 </web-app>

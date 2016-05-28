@@ -1,6 +1,6 @@
-package builder.exceptions.bad_request;
+package builder.rest.exceptions.bad_request;
 
-import builder.exceptions.BadRequestException;
+import builder.rest.exceptions.BadRequestException;
 
 /**
  * Created by oleh_kurpiak on 27.05.16.

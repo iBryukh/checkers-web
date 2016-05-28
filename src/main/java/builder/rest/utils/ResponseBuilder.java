@@ -1,7 +1,7 @@
-package builder.utils;
+package builder.rest.utils;
 
-import builder.domain.response.Error;
-import builder.domain.response.Response;
+import builder.rest.domain.response.Error;
+import builder.rest.domain.response.Response;
 import org.springframework.stereotype.Service;
 
 /**

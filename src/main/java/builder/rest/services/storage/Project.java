@@ -1,4 +1,4 @@
-package builder.services.storage;
+package builder.rest.services.storage;
 
 import java.util.ArrayList;
 import java.util.List;

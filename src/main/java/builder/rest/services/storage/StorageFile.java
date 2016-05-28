@@ -1,4 +1,4 @@
-package builder.services.storage;
+package builder.rest.services.storage;
 
 /**
  * Created by oleh_kurpiak on 27.05.16.

@@ -1,9 +1,9 @@
-package builder.controller.api;
+package builder.rest.controller.api;
 
-import builder.domain.response.Response;
-import builder.exceptions.BadRequestException;
-import builder.exceptions.ServiceException;
-import builder.utils.ResponseBuilder;
+import builder.rest.domain.response.Response;
+import builder.rest.exceptions.BadRequestException;
+import builder.rest.exceptions.ServiceException;
+import builder.rest.utils.ResponseBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
