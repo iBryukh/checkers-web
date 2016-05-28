@@ -14,7 +14,7 @@
 
     <mvc:annotation-driven />
     <mvc:resources mapping="/resources/**" location="/resources/" />
-    <context:component-scan base-package="builder"/>
+    <context:component-scan base-package="builder.rest"/>
     <aop:aspectj-autoproxy/>
 
 

@@ -1,4 +1,4 @@
-package builder.controller.pages;
+package builder.rest.controller.pages;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

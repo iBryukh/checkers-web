@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>cpp-project-builder-web</groupId>
-    <artifactId>cpp-project-builder-web</artifactId>
+    <groupId>cpp-project-builder-rest</groupId>
+    <artifactId>cpp-project-builder-rest</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>builder_web</name>
+    <name>builder_rest</name>
     <packaging>war</packaging>
 
     <properties>

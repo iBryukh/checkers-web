@@ -1,12 +1,12 @@
-package builder.controller.api;
+package builder.rest.controller.api;
 
-import builder.domain.response.Response;
-import builder.exceptions.BadRequestException;
-import builder.exceptions.ServiceException;
-import builder.exceptions.bad_request.BadFileExtension;
-import builder.services.IStorageService;
-import builder.services.storage.Project;
-import builder.utils.ResponseBuilder;
+import builder.rest.domain.response.Response;
+import builder.rest.exceptions.BadRequestException;
+import builder.rest.exceptions.ServiceException;
+import builder.rest.exceptions.bad_request.BadFileExtension;
+import builder.rest.services.IStorageService;
+import builder.rest.services.storage.Project;
+import builder.rest.utils.ResponseBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

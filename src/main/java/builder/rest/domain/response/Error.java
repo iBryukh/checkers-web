@@ -1,4 +1,4 @@
-package builder.domain.response;
+package builder.rest.domain.response;
 
 /**
  * Created by oleh_kurpiak on 26.05.16.
