@@ -2,6 +2,7 @@ package builder.rest.logic_layers.rest.impl;
 
 import builder.rest.converter.Converter;
 import builder.rest.domain.entities.UserEntity;
+import builder.rest.domain.request.CreateUserForm;
 import builder.rest.exceptions.BadRequestException;
 import builder.rest.exceptions.bad_request.NoSuchEntityException;
 import builder.rest.logic_layers.rest.UserRestService;
@@ -40,5 +41,17 @@ public class UserRestServiceImpl implements UserRestService{
         List<UserEntity> users = userService.get(offset, limit);
 
         return userConverter.convert(users, fields);
+    }
+
+    @Override
+    @Transactional
+    public boolean registerUser(CreateUserForm form) throws BadRequestException {
+        return userService.registerUser(form);
+    }
+
+    @Override
+    @Transactional
+    public Map<String, Object> signIn(CreateUserForm form) throws BadRequestException {
+        return userService.signIn(form);
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
@@ -18,34 +19,26 @@ import java.util.List;
 @Repository
 public class DaoImpl implements Dao {
 
+    @PersistenceContext
+    private EntityManager entityManager;
+
+
     @Override
     public <T> T getById(Class tClass, int id) {
-        return (T)getEntityManager().find(tClass, id);
+        return (T)entityManager.find(tClass, id);
     }
 
     @Override
     public <T> T update(T t) {
-        return getEntityManager().merge(t);
+        return entityManager.merge(t);
     }
 
     @Override
     public <T> List<T> get(Class tClass, int offset, int limit) {
-        Query query = getEntityManager().createQuery(String.format("SELECT o FROM %s o", tClass.getName()));
+        Query query = entityManager.createQuery(String.format("SELECT o FROM %s o", tClass.getName()));
         query.setFirstResult(offset);
         query.setMaxResults(limit);
 
         return query.getResultList();
     }
-
-    private EntityManager getEntityManager(){
-        if(entityManager == null)
-            entityManager = entityManagerFactory.createEntityManager();
-        return entityManager;
-    }
-
-    @Autowired
-    private EntityManagerFactory entityManagerFactory;
-
-    private EntityManager entityManager;
-
 }

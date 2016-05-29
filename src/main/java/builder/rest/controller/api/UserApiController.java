@@ -1,5 +1,6 @@
 package builder.rest.controller.api;
 
+import builder.rest.domain.request.CreateUserForm;
 import builder.rest.domain.response.Response;
 import builder.rest.exceptions.BadRequestException;
 import builder.rest.logic_layers.rest.UserRestService;
@@ -45,4 +46,19 @@ public class UserApiController {
         return builder.get(userRestService.getUser(id, fields));
     }
 
+    @RequestMapping(value = "/", method = RequestMethod.PUT)
+    public @ResponseBody
+    Response<Boolean> register(
+            @RequestBody CreateUserForm form
+    ) throws BadRequestException {
+        return builder.get(userRestService.registerUser(form));
+    }
+
+    @RequestMapping(value = "/sign_in", method = RequestMethod.POST)
+    public @ResponseBody
+    Response<Map<String, Object>> signIn(
+            @RequestBody CreateUserForm form
+    ) throws BadRequestException {
+        return builder.get(userRestService.signIn(form));
+    }
 }

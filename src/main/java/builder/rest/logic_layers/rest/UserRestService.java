@@ -1,5 +1,6 @@
 package builder.rest.logic_layers.rest;
 
+import builder.rest.domain.request.CreateUserForm;
 import builder.rest.exceptions.BadRequestException;
 import builder.rest.exceptions.bad_request.NoSuchEntityException;
 
@@ -14,4 +15,7 @@ public interface UserRestService {
 
     List<Map<String, Object>> getUsers(int offset, int limit, Set<String> fields) throws BadRequestException;
 
+    boolean registerUser(CreateUserForm form) throws BadRequestException;
+
+    Map<String, Object> signIn(CreateUserForm form) throws BadRequestException;
 }
