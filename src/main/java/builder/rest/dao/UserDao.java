@@ -9,4 +9,6 @@ public interface UserDao {
 
     UserEntity getById(int id);
 
+    UserEntity update(UserEntity user);
+
 }

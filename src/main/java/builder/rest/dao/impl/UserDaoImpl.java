@@ -19,4 +19,9 @@ public class UserDaoImpl implements UserDao {
     public UserEntity getById(int id) {
         return dao.getById(UserEntity.class, id);
     }
+
+    @Override
+    public UserEntity update(UserEntity user) {
+        return dao.update(user);
+    }
 }

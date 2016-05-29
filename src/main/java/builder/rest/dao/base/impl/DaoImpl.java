@@ -21,6 +21,11 @@ public class DaoImpl implements Dao {
         return (T)getEntityManager().find(tClass, id);
     }
 
+    @Override
+    public <T> T update(T t) {
+        return getEntityManager().merge(t);
+    }
+
     private EntityManager getEntityManager(){
         if(entityManager == null)
             entityManager = entityManagerFactory.createEntityManager();

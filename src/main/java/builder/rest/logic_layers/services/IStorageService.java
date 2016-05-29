@@ -1,9 +1,9 @@
-package builder.rest.services;
+package builder.rest.logic_layers.services;
 
 import builder.rest.exceptions.BadRequestException;
 import builder.rest.exceptions.ServiceException;
 import builder.rest.exceptions.bad_request.BadFileExtension;
-import builder.rest.services.storage.Project;
+import builder.rest.logic_layers.services.storage.Project;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.OutputStream;

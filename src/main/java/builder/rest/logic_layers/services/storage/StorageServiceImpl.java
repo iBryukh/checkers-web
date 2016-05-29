@@ -1,10 +1,10 @@
-package builder.rest.services.storage;
+package builder.rest.logic_layers.services.storage;
 
 import builder.rest.exceptions.BadRequestException;
 import builder.rest.exceptions.ServiceException;
 import builder.rest.exceptions.bad_request.BadFileExtension;
 import builder.rest.exceptions.bad_request.BadProjectName;
-import builder.rest.services.IStorageService;
+import builder.rest.logic_layers.services.IStorageService;
 import com.dropbox.core.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

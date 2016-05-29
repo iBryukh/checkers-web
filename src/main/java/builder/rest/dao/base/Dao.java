@@ -7,4 +7,6 @@ public interface Dao {
 
     <T> T getById(Class tClass, int id);
 
+    <T> T update(T t);
+
 }

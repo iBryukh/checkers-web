@@ -1,4 +1,4 @@
-package builder.rest.service;
+package builder.rest.logic_layers.services;
 
 import builder.rest.domain.entities.UserEntity;
 

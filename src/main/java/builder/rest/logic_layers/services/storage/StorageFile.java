@@ -1,4 +1,4 @@
-package builder.rest.services.storage;
+package builder.rest.logic_layers.services.storage;
 
 /**
  * Created by oleh_kurpiak on 27.05.16.
