@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
+import java.util.List;
 
 /**
  * Created by oleh_kurpiak on 29.05.16.
@@ -24,6 +26,15 @@ public class DaoImpl implements Dao {
     @Override
     public <T> T update(T t) {
         return getEntityManager().merge(t);
+    }
+
+    @Override
+    public <T> List<T> get(Class tClass, int offset, int limit) {
+        Query query = getEntityManager().createQuery(String.format("SELECT o FROM %s o", tClass.getName()));
+        query.setFirstResult(offset);
+        query.setMaxResults(limit);
+
+        return query.getResultList();
     }
 
     private EntityManager getEntityManager(){

@@ -1,5 +1,8 @@
 package builder.rest.logic_layers.rest;
 
+import builder.rest.exceptions.BadRequestException;
+import builder.rest.exceptions.bad_request.NoSuchEntityException;
+
 import java.util.*;
 
 /**
@@ -7,8 +10,8 @@ import java.util.*;
  */
 public interface UserRestService {
 
-    Map<String, Object> getUser(int id, String fields);
+    Map<String, Object> getUser(int id, Set<String> fields) throws BadRequestException;
 
-    List<Map<String, Object>> getUsers(int limit, int offset, String fields);
+    List<Map<String, Object>> getUsers(int offset, int limit, Set<String> fields) throws BadRequestException;
 
 }
