@@ -2,6 +2,9 @@ package builder.rest.converter.impl;
 
 import builder.rest.converter.Converter;
 import builder.rest.domain.entities.UserEntity;
+import builder.rest.domain.enums.Role;
+import builder.rest.utils.SessionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -17,6 +20,9 @@ import static builder.rest.domain.Fields.*;
 @Component
 public class UserConverter extends Converter<UserEntity> {
 
+    @Autowired
+    private SessionUtils sessionUtils;
+
     @Override
     public Map<String, Object> convert(UserEntity o, Set<String> fields) {
         Map<String, Object> map = new HashMap<>();
@@ -26,8 +32,10 @@ public class UserConverter extends Converter<UserEntity> {
         if(fields.contains(EMAIL))
             map.put(EMAIL, o.getEmail());
         if(fields.contains(PASSWORD)) {
-            // todo: check if allowed
-            map.put(ID, o.getPassword());
+            if(sessionUtils.hasRole(Role.admin) || sessionUtils.theSame(o.getId()))
+                map.put(PASSWORD, o.getPassword());
+            else
+                map.put(PASSWORD, null);
         }
         if(fields.contains(ROLE)){
             map.put(ROLE, o.getRole());
