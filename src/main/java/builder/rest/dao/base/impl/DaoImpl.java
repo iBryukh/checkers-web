@@ -6,10 +6,11 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 /**
@@ -34,11 +35,21 @@ public class DaoImpl implements Dao {
     }
 
     @Override
-    public <T> List<T> get(Class tClass, int offset, int limit) {
-        Query query = entityManager.createQuery(String.format("SELECT o FROM %s o", tClass.getName()));
+    public <T> List<T> get(Class<T> tClass, int offset, int limit) {
+        TypedQuery<T> query = buildQueryFromCriteria(tClass);
         query.setFirstResult(offset);
         query.setMaxResults(limit);
-
         return query.getResultList();
+    }
+
+    private <T> TypedQuery<T> buildQueryFromCriteria(Class<T> tClass){
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<T> criteriaQuery = builder.createQuery(tClass);
+        Root<T> root = criteriaQuery.from(tClass);
+        criteriaQuery.select(root);
+
+
+
+        return entityManager.createQuery(criteriaQuery);
     }
 }

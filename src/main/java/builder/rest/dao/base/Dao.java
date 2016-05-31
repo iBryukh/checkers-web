@@ -11,6 +11,6 @@ public interface Dao {
 
     <T> T update(T t);
 
-    <T> List<T> get(Class tClass, int offset, int limit);
+    <T> List<T> get(Class<T> tClass, int offset, int limit);
 
 }
