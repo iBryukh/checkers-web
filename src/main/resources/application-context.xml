@@ -24,26 +24,9 @@
         p:suffix=".jsp"
     />
 
-    <!-- START configure messages with locale -->
-    <bean id="messageSource"
-          class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
-        p:defaultEncoding="UTF-8"
-        p:basename="classpath:messages"
-    />
-
-    <bean id="localeResolver"
-          class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
-        <property name="defaultLocale" value="en"/>
-        <property name="cookieName" value="builder_cookie"/>
-        <property name="cookieMaxAge" value="3600"/>
-    </bean>
-    <!-- END -->
-
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
         p:location="classpath:environment.properties"
     />
-
-
 
 
     <!-- START configure DB, transactions -->

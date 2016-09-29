@@ -1,0 +1,34 @@
+#game_field {
+    float: right;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td {
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    display: inline-block;
+    white-space: nowrap;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.box img {
+    width: 70px;
+    height: 70px;
+}
+
+.numbers {
+    width: 20px;
+}
+
+.letters {
+    height: 20px;
+}
+
+.black {
+    background: black;
+}
