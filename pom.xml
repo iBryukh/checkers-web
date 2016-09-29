@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>cpp-project-builder-rest</groupId>
-    <artifactId>cpp-project-builder-rest</artifactId>
+    <groupId>checkers_kma</groupId>
+    <artifactId>checkers_kma</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>builder_rest</name>
+    <name>checkers_kma</name>
     <packaging>war</packaging>
 
     <properties>
@@ -25,7 +25,7 @@
                 <database.url>jdbc:mysql://localhost:3306</database.url>
                 <database.user>root</database.user>
                 <database.pass>root</database.pass>
-                <database.schema>builder</database.schema>
+                <database.schema>checkers_kma</database.schema>
             </properties>
         </profile>
         <profile>
@@ -101,12 +101,6 @@
         </dependency>
 
         <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
-            <version>0.2</version>
-        </dependency>
-
-        <dependency>
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>
             <version>1.4</version>
@@ -130,47 +124,10 @@
         </dependency>
         <!-- end aspects -->
 
-        <!-- storage -->
-        <dependency>
-            <groupId>com.dropbox.core</groupId>
-            <artifactId>dropbox-core-sdk</artifactId>
-            <version>1.7</version>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
-            <version>1.2.1</version> <!-- makesure correct version here -->
-        </dependency>
-
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>1.3.2</version>
-        </dependency>
-        <!-- end storage -->
-
-        <!-- Spring security -->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-web</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <!-- Spring security -->
     </dependencies>
 
     <build>
-        <finalName>test1</finalName>
+        <finalName>checkers_kma</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>

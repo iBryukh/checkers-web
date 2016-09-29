@@ -69,28 +69,4 @@
         p:jpaVendorAdapter-ref="jpaVendor"
     />
     <!-- END -->
-
-
-
-
-    <!-- START configure DropBox client -->
-    <bean id="dropboxClientConfig" class="com.dropbox.core.DbxRequestConfig">
-        <constructor-arg value="${dropbox.identifier}" />
-        <constructor-arg value="${dropbox.locale}" />
-    </bean>
-
-    <bean id="dropboxClient" class="com.dropbox.core.DbxClient">
-        <constructor-arg ref="dropboxClientConfig" />
-        <constructor-arg value="${dropbox.access_token}" />
-    </bean>
-    <!-- END -->
-
-
-
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="maxUploadSize" value="50000000"/>
-    </bean>
-
-    <bean id="md5PasswordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"/>
-
 </beans>
