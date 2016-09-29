@@ -22,9 +22,9 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <database.url>jdbc:mysql://localhost:3306</database.url>
-                <database.user>root</database.user>
-                <database.pass>root</database.pass>
+                <database.url>jdbc:mysql://eu-cdbr-azure-north-e.cloudapp.net:3306</database.url>
+                <database.user>b9cd91f3dd0e92</database.user>
+                <database.pass>75314c0e</database.pass>
                 <database.schema>checkers_kma</database.schema>
             </properties>
         </profile>
